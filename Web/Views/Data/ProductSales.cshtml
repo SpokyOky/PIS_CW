@@ -1,0 +1,20 @@
+﻿@model Logic.ViewModels.DateViewModel
+@{
+    ViewData["Title"] = "Количество продаж по товарам за период";
+}
+
+@using (Html.BeginForm("ProductSales"))
+{
+    <p>От: @Html.EditorFor(model => model.dateFrom)</p>
+    <p>До: @Html.EditorFor(model => model.dateTo)</p>
+
+    @if (ViewBag.Products != null && ViewBag.Result != null)
+    {
+        foreach (var product in ViewBag.Products)
+        {
+            <p>Товар @product.Name продан @ViewBag.Result[product.Name] раз</p>
+        }
+    }
+
+    <button type="submit">Найти информацию</button>
+}

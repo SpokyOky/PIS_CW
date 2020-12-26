@@ -1,0 +1,19 @@
+﻿@model Logic.Models.Product
+@{
+    ViewData["Title"] = "Добавить продукцию";
+}
+
+@using (Html.BeginForm("Product"))
+{
+    @Html.HiddenFor(model => model.Id)
+    <p>Название: @Html.EditorFor(model => model.Name)</p>
+    <p>Марка: @Html.EditorFor(model => model.Brand)</p>
+    <p>Производитель: @Html.EditorFor(model => model.Manufacturer)</p>
+    <p>Рекламная информация: @Html.EditorFor(model => model.AdvertData)</p>
+    <p>Город: @Html.EditorFor(model => model.City)</p>
+    <p>Цена: @Html.EditorFor(model => model.Price)</p>
+    <p>Категория: @Html.DropDownList("productGroup", (SelectList)ViewBag.ProductGroups, "Выберите группу товаров...")</p>
+    @Html.ValidationSummary()
+
+    <p><input type="submit" value="Сохранить" /></p>
+}

@@ -1,0 +1,15 @@
+﻿@model Logic.Models.Supplier
+@{
+    ViewData["Title"] = "Добавить группу товаров для поставщика";
+}
+
+@using (Html.BeginForm("AddPG"))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.INN)
+    <p>Группы: @Html.DropDownList("productGroup", (SelectList)ViewBag.ProductGroups)</p>
+
+    @Html.ValidationSummary()
+    <p><input type="submit" value="Сохранить" /></p>
+}

@@ -1,0 +1,29 @@
+﻿@model Logic.ViewModels.DateViewModel
+@{
+    ViewData["Title"] = "Сумма продаж по неделям и поставщикам";
+}
+
+@using (Html.BeginForm("SalesSum"))
+{
+    @Html.HiddenFor(rec => rec.dateFrom)
+    @Html.HiddenFor(rec => rec.dateTo)
+    <p>Создать word файл? @Html.EditorFor(model => model.saveWord)</p>
+
+    <table border="1">
+        @if (ViewBag.Result != null)
+        {
+            foreach (var row in ViewBag.Result)
+            {
+                <tr>
+                    @foreach (var cell in row)
+                    {
+                        <td>@cell</td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+
+    <button type="submit">Найти информацию</button>
+}
+

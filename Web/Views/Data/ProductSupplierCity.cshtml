@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Поиск данных о товаре";
+}
+@using (Html.BeginForm("Product"))
+{
+
+    @if (ViewBag.ProductsList != null)
+    {
+        @if (ViewBag.ProductsList.Count > 0)
+        {
+            foreach (var list in ViewBag.ProductsList)
+            {
+                <h5>Поставщик: @list.Item1.Name</h5>
+                foreach (var byCity in list.Item2)
+                {
+                    <h6>Город: @byCity.Key</h6>
+                    foreach (var product in byCity)
+                    {
+                        <p>Наименование: @product.Name</p>
+                        <p>Цена: @product.Price</p>
+                        <p></p>
+                    }
+                }
+                <p></p>
+            }
+        }
+    }
+
+    <button type="submit">Найти информацию</button>
+}

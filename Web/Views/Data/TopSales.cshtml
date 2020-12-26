@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Топ продаж";
+}
+@using (Html.BeginForm("TopSales"))
+{
+
+    @if (ViewBag.TopSales != null)
+    {
+        @if (ViewBag.TopSales.Count > 0)
+        {
+            foreach (var product in ViewBag.TopSales)
+            {
+                <h6>@(ViewBag.TopSales.IndexOf(product) + 1). @product.Item1.Name - @product.Item2</h6>
+                <p></p>
+            }
+        }
+    }
+
+    <button type="submit">Найти информацию</button>
+}

@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Поиск данных о поставщике";
+}
+@using (Html.BeginForm("Supplier"))
+{
+    <p>Название: <input name="supplierName" type="text" /></p>
+    <p>ИНН: <input name="supplierINN" type="number" /></p>
+
+    @if (ViewBag.Supplier != null)
+    {
+        var supplier = ViewBag.Supplier as Logic.Models.Supplier;
+
+        <p>Номер: @supplier.Id</p>
+        <p>Наименование: @supplier.Name</p>
+        <p>ИНН: @supplier.INN</p>
+        @if (ViewBag.ProductGroups.Count > 0)
+        {
+            foreach (var pg in ViewBag.ProductGroups)
+            {
+                <h3>Группа: @pg.Name</h3>
+                @foreach (var pr in pg.Products)
+                {
+                    <p>Номер: @pr.Id</p>
+                    <p>Наименование: @pr.Name</p>
+                    <p>Цена: @pr.Price</p>
+                    <p>Брэнд: @pr.Brand</p>
+                    <p>Производитель: @pr.Manufacturer</p>
+                    <p>Реклама: @pr.AdvertData</p>
+                    <p>Город производства: @pr.City</p>
+                    <p></p>
+                }
+            }
+        }
+    }
+
+    <button type="submit">Найти информацию</button>
+}

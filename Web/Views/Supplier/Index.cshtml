@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Logic.Models.Supplier>
+
+@{
+    ViewData["Title"] = "Поставщики";
+}
+
+<a asp-action="Add">Добавить</a>
+
+@foreach (var Supplier in Model)
+{
+    <p>@Supplier.Name |  <a asp-action="Edit" asp-route-id="@Supplier.Id">Редактировать</a> | <a asp-action="Delete" asp-route-id="@Supplier.Id">Удалить</a></p>
+}

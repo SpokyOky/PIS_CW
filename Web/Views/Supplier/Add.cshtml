@@ -1,0 +1,13 @@
+﻿@model Logic.Models.Supplier
+@{
+    ViewData["Title"] = "Добавить поставщика";
+}
+
+@using (Html.BeginForm("Add"))
+{
+    @Html.HiddenFor(model => model.Id)
+    <p>Название: @Html.EditorFor(model => model.Name)</p>
+    <p>ИНН: @Html.EditorFor(model => model.INN)</p>
+    @Html.ValidationSummary()
+    <p><input type="submit" value="Сохранить" /></p>
+}

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Logic.Models.ProductGroup>
+@{
+    ViewData["Title"] = "Переоценка продукции";
+}
+@using (Html.BeginForm("Revaluate", "OperationRevaluation", FormMethod.Post))
+{
+    <table border="1">
+        <tr>
+            <td>#</td>
+            <td>Название</td>
+            <td>Текущая цена (средняя)</td>
+            <td>Новая цена / множитель цены</td>
+        </tr>
+        @foreach (var productGroup in Model)
+        {
+            <tr>
+                <td>@productGroup.Id</td>
+                <td colspan="2">@productGroup.Name</td>
+                <td><input name="@productGroup.Id-group" type="number" value="1" min="0" step="0.01"/></td>
+            </tr>
+
+            @foreach (var product in productGroup.Products)
+            {
+                var productPrice = ViewBag.ProductPrices[product];
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@productPrice</td>
+                    <td><input name="@product.Id-product" type="number" value="" min="0" /></td>
+                </tr>
+            }
+        }
+    </table>
+
+    @Html.ValidationSummary()
+
+    <p><input type="submit" value="Сохранить" /></p>
+}

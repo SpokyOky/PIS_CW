@@ -1,0 +1,38 @@
+﻿@model Logic.ViewModels.DateViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+@using (Html.BeginForm("Index"))
+{
+
+    <a asp-action="Diagram">Создать диаграмму цена/спрос</a>
+
+    <p>Начало отчётной недели: @Html.EditorFor(model => model.dateFrom)</p>
+    <p>Создать word файл? @Html.EditorFor(model => model.saveWord)</p>
+    @Html.HiddenFor(model => model.dateTo)
+
+    @if (ViewBag.ProductsList != null)
+    {
+        @if (ViewBag.ProductsList.Count > 0)
+        {
+            foreach (var list in ViewBag.ProductsList)
+            {
+                <h5>Покупка: @list.Item1.Date.ToString("yyyy-MM-dd")</h5>
+                foreach (var byGroup in list.Item2)
+                {
+                    <h6>Группа: @byGroup.Key</h6>
+                    foreach (var product in byGroup)
+                    {
+                        <p>Наименование: @product.Name</p>
+                        <p>Цена: @product.Price</p>
+                        <p></p>
+                    }
+                }
+                <p></p>
+            }
+        }
+    }
+
+    <button type="submit">Найти информацию</button>
+}

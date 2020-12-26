@@ -1,0 +1,14 @@
+﻿@model Logic.Models.ProductGroup
+@{
+    ViewData["Title"] = "Добавить группу товаров";
+}
+
+@using (Html.BeginForm("ProductGroup"))
+{
+    @Html.HiddenFor(model => model.Id)
+    <p>Название: @Html.EditorFor(model => model.Name)</p>
+    <p>Норма: @Html.EditorFor(model => model.Norm, new { htmlAttributes = new { @min = "0" } })</p>
+    @Html.ValidationSummary()
+
+    <p><input type="submit" value="Сохранить" /></p>
+}

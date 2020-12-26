@@ -1,0 +1,20 @@
+﻿@model Logic.Models.User
+@{
+    ViewData["Title"] = "Авторизация";
+    ViewData["NoAuth"] = true;
+}
+
+<form asp-action="Login" asp-controller="Login">
+    <div class="form-group">
+        <label asp-for="Login" class="control-label">Логин</label>
+        <input type="text" asp-for="Login" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label">Пароль</label>
+        <input type="password" asp-for="Password" class="form-control" />
+        @Html.ValidationSummary()
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Войти" class="btn btn-default" />
+    </div>
+</form>
